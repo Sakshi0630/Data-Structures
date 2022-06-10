@@ -1,0 +1,38 @@
+
+#include <iostream>
+
+using namespace std;
+struct Node* head;
+struct Node{
+    int data;
+    struct Node* next;
+};
+void insert(int x){
+    Node* temp=new Node();
+    temp->data=x;
+    temp->next=head;
+    head=temp;
+}
+void print(){
+    Node* temp=head;
+    cout<<"List is:";
+    cout<<endl;
+    while(temp!=nullptr){
+        cout<<temp->data;
+        temp=temp->next;
+    }
+    cout<<endl;
+}
+int main()
+{
+head=nullptr;
+cout<<"How many numbers would you like to enter?";
+int n,i;
+cin>>n;
+for(i=0;i<n;i++){
+    cout<<"Enter the number";
+    cin>>n;
+    insert(n);
+    print();
+}
+}
