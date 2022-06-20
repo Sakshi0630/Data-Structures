@@ -8,7 +8,12 @@ struct Node* head;
 void insert(int data){
     Node* temp1=new Node();
     temp1->data=data;
-    Node* temp2=new Node();
+    Node* temp2=head;
+if(temp2==nullptr){
+head=temp1;
+temp1->next=nullptr;
+return;
+}
     while(temp2->next!=NULL){
         temp2=temp2->next;
     }
@@ -17,8 +22,9 @@ void insert(int data){
 }
 void print(){
     Node* temp=head;
+    cout<<"List is: ";
     while(temp!=NULL){
-        cout<<temp->data;
+        cout<<temp->data<<" ";
         temp=temp->next;
     }
     cout<<endl;
@@ -26,17 +32,17 @@ void print(){
 void rem(int n){
     struct Node* temp1=head;
     int i;
-    for(i=0;i<n-2;i++){
         if(n==1){
             head=temp1->next;
             delete(temp1);
             return;
         }
+        for(i=0;i<n-2;i++)
         temp1=temp1->next;
+        
         struct Node* temp2= temp1->next;
         temp1->next=temp2->next;
         delete temp2;
-    }
 }
 int main(){
     head=NULL;
@@ -47,7 +53,7 @@ int main(){
     insert(6);
     print();
     int n;
-    cout<<"ENter the position";
+    cout<<"Enter the position";
     cin>>n;
     rem(n);
     print();
