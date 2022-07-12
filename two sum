@@ -1,0 +1,12 @@
+pair<int,int> twoSum(vector<int> &A, int target) {
+	pair<int, int> pair1;
+    for(int i=0;i<A.size();i++){
+		for(int j=i+1;j<A.size()-1;j++){
+			if(A[i]+A[j]==target){
+				pair1.first=i;
+			    pair1.second=j;
+			}
+		}
+	}
+            return pair1;
+}
