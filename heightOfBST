@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<iostream>
+using namespace std;
+struct BstNode{
+    int data;
+    BstNode* left;
+    BstNode* right;
+};
+BstNode* root;
+BstNode* GetNewNode(int data){
+    BstNode* NewNode= new BstNode();
+    NewNode->data=data;
+    NewNode->left=NULL;
+    NewNode->right=NULL;
+    return NewNode;
+}
+BstNode* insert(BstNode* root, int data){
+    if(root==NULL){
+        root=GetNewNode(data);
+    }
+    else if(data<=root->data){
+        root->left=insert(root->left, data);
+    }
+    else{
+        root->right=insert(root->right,data);
+    }
+    return root;
+}
+int findheight(BstNode* root){
+    if(root==NULL){
+        return -1;
+    }
+    int leftheight= findheight(root->left);
+    int rightheight=findheight(root->right);
+    return max(leftheight, rightheight)+1;
+}
+int main(){
+    root=NULL;
+    root=insert(root,15);
+    root=insert(root,10);
+    root=insert(root,20); 
+    root=insert(root,8);
+    root=insert(root,12);
+    root=insert(root,17);
+    root=insert(root,25);
+    root=insert(root,2);
+    cout<<"The height of the tree is: "<<findheight(root);
+}
