@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<iostream>
+using namespace std;
+struct BstNode{
+    int data;
+    BstNode *left;
+    BstNode *right;
+};
+ struct BstNode* root;
+BstNode* GetNewNode(int data){
+    BstNode* NewNode=new BstNode();
+    NewNode->data=data;
+    NewNode->left=NULL;
+    NewNode->right=NULL;
+    return NewNode;
+}
+BstNode* insert(BstNode* root,int data){
+   //if the tree is empty
+   if(root==NULL){
+       root=GetNewNode(data);
+   }
+   //if tree is not empty
+   else if(data <=root->data){
+       root->left=insert(root->left, data);
+   }
+   else if(data >=root->data){
+       root->right=insert(root->right, data);
+   }
+       return root;
+}
+bool search(BstNode* root, int data){
+    if(root==NULL) return false;
+    else if(root->data==data) return true;
+    else if(data <=root->data) return search(root->left, data);
+    else return search(root->right, data);
+}
+int main(){
+    root=NULL; //when the tree is empty
+    root=insert(root,15);
+    root=insert(root,10);
+    root=insert(root,20);
+    root=insert(root, 8);
+    root=insert(root,12);
+    root=insert(root,17);
+    root=insert(root,25);
+    int number;
+    cout<<"Enter the number to be searched";
+    cin>>number;
+    if(search(root, number)== true) cout<<"Found\n";
+    else cout<<"Not Found\n";
+    
+}
