@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include<queue>
+#include<iostream>
+using namespace std;
+struct BstNode{
+    char data;
+    BstNode *left;
+    BstNode *right;
+};
+BstNode* root;
+BstNode* GetNewNode(char data){
+    BstNode* NewNode=new BstNode();
+    NewNode->data=data;
+    NewNode->left=NULL;
+    NewNode->right=NULL;
+    return NewNode;
+}
+BstNode* insert(BstNode* root, char data){
+    if(root==NULL){
+        root=GetNewNode(data);
+    }
+    else if(data<=root->data)
+        root->left=insert(root->left,data);
+    else
+        root->right=insert(root->right,data);
+    return root;
+}
+void leveltraverse(BstNode* root){
+    if(root==NULL){
+        return;
+    }
+    else{
+        queue<BstNode*> q;
+        q.push(root);
+        //while there is atleast one discovered node
+        while(!q.empty()){
+            BstNode* current=q.front();
+            cout<<current->data<<" ";
+            if(current->left!=NULL) q.push(current->left);
+            if(current->right!=NULL) q.push(current->right);
+            q.pop(); //removing the element from the queue
+        }
+        }
+}
+int main(){
+    root=NULL;
+    root=insert(root,'F');
+    root=insert(root,'D');
+    root=insert(root,'J');
+    root=insert(root,'B');
+    root=insert(root,'E');
+    root=insert(root,'G');
+    root=insert(root,'K');
+    root=insert(root,'A');
+    root=insert(root,'C');
+    root=insert(root,'I');
+    root=insert(root,'H');
+    leveltraverse(root);
+}
